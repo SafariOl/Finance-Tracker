@@ -6,6 +6,10 @@
     box-sizing: border-box;
 }
 
+@function border($width) {
+    @return $width solid #000;
+}
+
 body{
     background: #f6f3f3;
     font-family: 'Poppins', sans-serif;
@@ -43,7 +47,7 @@ form{
         margin-bottom: .5em;
     }
     input{
-        border: 1px solid #000;
+        border: border(1px);
         padding: 5px .5rem;
         box-shadow: 2px 2px 5px #000;
         border-radius: 3px;
@@ -61,7 +65,7 @@ form{
             padding: 5px 0;
             width: max(100px, 60px);
             font-weight: 600;    
-            border: 2px solid #000;      
+            border: border(2px);      
             &:active{
                 background-color: #b6b5b5;
             }  
@@ -93,7 +97,12 @@ nav{
         top: 0;
         &.active{
             width: max(22vw, 100px);
-            padding: 1em 2em;
+            padding: 1em 0;
+        }
+        @media (max-width: 990px){
+            &.active{
+                width: 50vw;
+            }
         }
         background-color: #f6f3f3;
         border-left: 2px solid #000;
@@ -127,11 +136,16 @@ nav{
                     background-color: #000;
                     transition: all .2s ease;
                 }
-                &:hover{
-                    font-size: 2.2em;
-                    &::before{
-                        width: 100%;
+                @media (min-width: 990px){
+                    &:hover{
+                        font-size: 2.2em;
+                        &::before{
+                            width: 100%;
+                        }
                     }
+                }
+                &:active{
+                    transform: scale(0.9);
                 }
             }
         }
@@ -139,14 +153,53 @@ nav{
             display: flex;
             justify-content: space-between;
             width: 100%;
-            font-size: 2.2em;
-            a{
-                color: #000;
+            .contacts__link{
+                width: 28%;
+                height: 50px;
+                display: grid;
+                place-items: center;
+                a{
+                    font-size: 2.2em;
+                    color: #000;
+                    transition: all .2s ease;
+                    @media(min-width: 990px){
+                        &:hover{
+                            transform: scale(1.3);
+                            color: #071b60;
+                        }
+                    }
+                    @media (max-width: 990px){
+                        &{
+                            font-size: 2.8em;
+                        }
+                    }
+                }
             }
         }
         .close{
             align-self: flex-end;
             font-size: 2em;
+            margin-right: 1em;
+        }
+    }
+    @media (max-width: 700px){
+        &{
+            padding: 0;
+            .logo{
+                width: 50px;
+            }
+            .burger{
+                font-size: 2em;
+            }
+        }
+    }
+    @media (max-width: 450px){
+        &{
+            .burger-block{
+                &.active{
+                    width: 100%;
+                }
+            }
         }
     }
 }
@@ -173,6 +226,11 @@ nav{
         height: 5px;
         background-color: #000;
     }
+    @media (max-width: 450px){
+        &{
+            font-size: 5em;
+        }
+    }
 }
 
 .history{
@@ -180,11 +238,12 @@ nav{
     left: 0;
     bottom: 0;
     width: max(25vw, 100px);
-    height: 46vh;
+    height: 41vh;
     overflow: hidden;
-    border-right: 2px solid #000;
-    border-top: 2px solid #000;
+    border-right: border(2px);
+    border-top: border(2px);
     border-top-right-radius: 15px;
+
     .history-block{
         padding: 1em 2em;
         display: flex;
@@ -196,6 +255,12 @@ nav{
             font-weight: 500;
         }
     }
+
+    @media (max-width: 990px){
+        &{
+            display: none;
+        }
+    }
 }
 
 
@@ -203,12 +268,16 @@ nav{
     display: flex;
     flex-direction: column;
     align-items: center;
+    .empty{
+        margin-top: 5vh;
+        font-size: 1.3em;
+    }
     h1{
         text-align: center;
         font-size: 3em;
     }
     .clear{
-        border: 1px solid #000;
+        border: border(1px);
         padding: 5px 0;
         width: max(120px, 150px);
         border-radius: 8px;
@@ -229,18 +298,39 @@ nav{
         width: 50vw;
         place-items: center;
         margin-top: 3vh;
-        border-bottom: 1px solid #000;
-        border-top: 1px solid #000;
+        border-bottom: border(1px);
+        border-top: border(1px);
         .history-page__block{
             width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 1.5em 1.5em;
-            border-bottom: 2px solid #000;
+            border-bottom: border(2px);
+            
             .price{
                 font-size: 1.7em;
                 font-weight: 600;
+            }
+        }
+        &:last-child{
+            border-bottom: none;
+        }
+    }
+    @media (max-width: 700px){
+        &{
+            .clear{
+                width: 130px;
+                font-size: .8em;
+            }
+            .history-page__content{
+                width: 90vw;
+                h2{
+                    font-size: 1em;
+                }
+                .history-page__block .price {
+                    font-size: 1.3em;
+                }
             }
         }
     }
@@ -265,56 +355,8 @@ nav{
   }
 
 
-@media (max-width: 990px){
-    .history{
-        display: none;
-    }
-    nav{
-        .burger-block{
-            &.active{
-                width: 50vw;
-            }
-        }
-    }
-}
-
-@media (max-width: 700px){
-    nav{
-        padding: 0;
-        .logo{
-            width: 50px;
-        }
-        .burger{
-            font-size: 2em;
-        }
-    }
-    .history-page{
-        .clear{
-            width: 130px;
-            font-size: .8em;
-        }
-        .history-page__content{
-            width: 90vw;
-            h2{
-                font-size: 1em;
-            }
-            .history-page__block .price {
-                font-size: 1.3em;
-            }
-        }
-    }
-}
 
 
-@media (max-width: 450px){
-    .total{
-        font-size: 5em;
-    }
-    nav{
-        .burger-block{
-            &.active{
-                width: 100%;
-            }
-        }
-    }
-}
+
+
+

@@ -14,7 +14,7 @@ export default function HistoryPage() {
         <button onClick={clearhistory} className='clear'>CLEAR HISTORY</button>
         <h1>HISTORY</h1>
         <div className="history-page__content">
-            {history.length == 0 ? <h3>Empty...</h3> : null}
+            {history.length === 0 ? <h3 className='empty'>Empty...</h3> : null}
             {history.map(el => 
                 <div className='history-page__block' key={el.id}>
                     <h2>{el.purchase}</h2>

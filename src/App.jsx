@@ -39,10 +39,18 @@ export default function App() {
             </div>
           </div>
           <div className="contacts">
-            <a href=""><FontAwesomeIcon icon={faInstagram} /></a>
-            <a href=""><FontAwesomeIcon icon={faTelegram} /></a>
-            <a href=""><FontAwesomeIcon icon={faGithub} /></a>
-            <a href=""><FontAwesomeIcon icon={faDiscord} /></a>
+            <div className="contacts__link">
+              <a href=""><FontAwesomeIcon icon={faInstagram} /></a>
+            </div>
+            <div className="contacts__link">
+              <a href=""><FontAwesomeIcon icon={faTelegram} /></a>
+            </div>
+            <div className="contacts__link">
+              <a href=""><FontAwesomeIcon icon={faGithub} /></a>
+            </div>
+            <div className="contacts__link">
+              <a href=""><FontAwesomeIcon icon={faDiscord} /></a>
+            </div>
           </div>
         </div>
       </nav>
